@@ -38,7 +38,10 @@ if user_input:
 
     ai_response = ai_judge(user_input, st.session_state.selected_story)
     st.session_state.chat_history.append({"role": "ai", "text": ai_response})
-
+    
+    # 清除user_input的內容
+    st.session_state.uset_input = ""
+    
     # 如果猜對，自動換下一題
     if "✅" in ai_response:
         st.success("你猜對了！進入下一題～")
@@ -46,7 +49,7 @@ if user_input:
             if key in st.session_state:
                 del st.session_state[key]
         st.rerun()
-
+    
 # 顯示對話紀錄
 st.markdown("---")
 st.markdown("### 🧾 問題紀錄：")
@@ -61,4 +64,5 @@ if st.button("🔁 換一題"):
     for key in ["selected_story", "chat_history", "user_input"]:
         if key in st.session_state:
             del st.session_state[key]
+    st.session_state.uset_input = ""
     st.rerun()
