@@ -30,7 +30,7 @@ st.markdown("### 題目：")
 st.markdown(st.session_state.selected_story.get("question", "題目載入失敗"))
 
 # 玩家輸入提問
-user_input = st.text_input("💬 請輸入你的推理問題：", "").strip()
+user_input = st.text_input("💬 請輸入你的推理問題123：", "").strip()
 
 # 玩家輸入後按 Enter
 if user_input:
