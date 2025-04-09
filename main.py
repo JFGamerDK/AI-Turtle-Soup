@@ -1,10 +1,22 @@
 import streamlit as st
 import json
 import random
+import openai  #  OpenAI 的 GPT 模型
 
 # 載入題庫
 with open("story_data.json", "r", encoding="utf-8") as f:
     story_data = json.load(f)
+
+
+
+# 一個範例判斷邏輯（也可以直接用你預設的關鍵字匹配）
+def ai_judge(user_input, story):
+    keywords = story.get("keywords", [])
+    for keyword in keywords:
+        if keyword in user_input:
+            return "✅ 是的，有關"
+    return "❌ 沒有關係"
+
 
 # 初始化 Session State
 if "selected_story" not in st.session_state:
