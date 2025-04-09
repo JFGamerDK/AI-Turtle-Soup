@@ -31,9 +31,14 @@ st.markdown(st.session_state.selected_story["question"])
 # 玩家輸入提問
 user_input = st.text_input("💬 請輸入你的推理問題：", "")
 
-# 當玩家按下 Enter 時
+# 玩家輸入後按 Enter 嘛
 if user_input:
     st.session_state.chat_history.append({"role": "user", "text": user_input})
+
+    # ✅ AI 來判斷這句話是不是有關鍵字（也可以改成 GPT 模型）
+    ai_response = ai_judge(user_input, st.session_state.selected_story)
+    st.session_state.chat_history.append({"role": "ai", "text": ai_response})
+
 
 # 顯示對話紀錄（目前只顯示提問）
 st.markdown("---")
